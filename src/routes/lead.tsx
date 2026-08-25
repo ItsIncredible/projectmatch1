@@ -7,9 +7,9 @@ import { SKILL_SUGGESTIONS, SkillTagInput } from "@/components/SkillTagInput";
 import { useStore } from "@/lib/store";
 import {
   DURATIONS,
-  EXPERIENCE_LEVELS,
+  EXPERIENCE_DURATIONS,
   PROJECT_TYPES,
-  type ExperienceLevel,
+  type ExperienceDuration,
   type ProjectType,
 } from "@/lib/types";
 
@@ -37,7 +37,7 @@ function LeadOnboarding() {
   const navigate = useNavigate();
 
   const [leaderName, setLeaderName] = useState("");
-  const [leaderExperience, setLeaderExperience] = useState<ExperienceLevel>("Intermediate");
+  const [leaderExperience, setLeaderExperience] = useState<ExperienceDuration>("6–12 months");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [duration, setDuration] = useState<string>(DURATIONS[1] ?? "1 month");
@@ -95,12 +95,12 @@ function LeadOnboarding() {
           />
         </Field>
 
-        <Field label="Experience level" htmlFor="leaderExperience">
+        <Field label="How much experience do you have relevant to this project?" htmlFor="leaderExperience">
           <Select
             id="leaderExperience"
-            options={EXPERIENCE_LEVELS}
+            options={EXPERIENCE_DURATIONS}
             value={leaderExperience}
-            onChange={(e) => setLeaderExperience(e.target.value as ExperienceLevel)}
+            onChange={(e) => setLeaderExperience(e.target.value as ExperienceDuration)}
           />
         </Field>
 

@@ -29,7 +29,7 @@ const initialState: AppState = {
   skippedProjects: {},
 };
 
-const STORAGE_KEY = "projectmatch-state-v1";
+const STORAGE_KEY = "projectmatch-state-v2";
 
 interface Store extends AppState {
   hydrated: boolean;

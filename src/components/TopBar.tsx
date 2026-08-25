@@ -68,7 +68,7 @@ export function TopBar() {
                     className="block w-full truncate rounded-lg px-2 py-1.5 text-left transition-colors hover:bg-accent"
                   >
                     {u.name}
-                    <span className="text-muted-foreground"> · {u.experienceLevel}</span>
+                    <span className="text-muted-foreground"> · {u.experience}</span>
                   </button>
                 ))}
               </div>

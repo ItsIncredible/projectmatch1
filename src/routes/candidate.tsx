@@ -4,6 +4,7 @@ import { toast } from "sonner";
 
 import { DeckEmpty, Initials, MatchBadge, SwipeCard } from "@/components/SwipeCard";
 import { rankProjects } from "@/lib/scoring";
+import { formatSkillExperience } from "@/lib/types";
 import { useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/candidate")({
@@ -106,11 +107,13 @@ function CandidateDashboard() {
     <div className="mx-auto max-w-3xl px-4 pb-24 pt-8">
       <h1 className="font-display text-2xl font-bold">{user.name}</h1>
       <p className="mt-1 font-mono text-xs text-muted-foreground">
-        {user.experienceLevel} · {user.availability}
+        {user.experience} experience · {user.availability}
       </p>
       <div className="mt-3 flex flex-wrap gap-1.5">
         {user.skills.map((s) => (
-          <span key={s} className="skill-chip-on-dark">{s}</span>
+          <span key={s} className="skill-chip-on-dark">
+            {formatSkillExperience(s, user.skillExperience?.[s])}
+          </span>
         ))}
       </div>
 
@@ -143,7 +146,8 @@ function CandidateDashboard() {
                   <div>
                     <p className="font-display text-lg font-bold">{project.title}</p>
                     <p className="font-mono text-xs text-surface-foreground/60">
-                      {project.leaderName} · {project.leaderExperience} · {project.duration}
+                      {project.leaderName} · {project.leaderExperience} relevant experience ·{" "}
+                      {project.duration}
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -198,7 +202,8 @@ function CandidateDashboard() {
                 <div>
                   <p className="font-display text-xl font-bold">{top.project.title}</p>
                   <p className="font-mono text-xs text-surface-foreground/60">
-                    {top.project.leaderName} · {top.project.duration} · {top.project.location}
+                    {top.project.leaderName} · {top.project.leaderExperience} experience ·{" "}
+                    {top.project.duration} · {top.project.location}
                   </p>
                 </div>
                 <MatchBadge percent={top.percent} />
