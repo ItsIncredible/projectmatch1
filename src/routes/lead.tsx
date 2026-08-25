@@ -64,7 +64,7 @@ function LeadOnboarding() {
       location: location.trim() || (remoteOk ? "Remote" : "Not specified"),
       remoteOk,
       additionalInfo: additionalInfo.trim(),
-      projectType: projectType[0],
+      projectType: projectType[0] ?? "Hackathon",
     });
     setSession({ role: "leader", id: project.id });
     toast.success("Project created — here are your matches.");
