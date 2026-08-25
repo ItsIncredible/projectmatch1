@@ -10,12 +10,19 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CandidateRouteImport } from './routes/candidate'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as LeadRouteImport } from './routes/lead'
+import { Route as LeaderRouteImport } from './routes/leader'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CandidateRoute = CandidateRouteImport.update({
+  id: '/candidate',
+  path: '/candidate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JoinRoute = JoinRouteImport.update({
@@ -28,35 +35,48 @@ const LeadRoute = LeadRouteImport.update({
   path: '/lead',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LeaderRoute = LeaderRouteImport.update({
+  id: '/leader',
+  path: '/leader',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/candidate': typeof CandidateRoute
   '/join': typeof JoinRoute
   '/lead': typeof LeadRoute
+  '/leader': typeof LeaderRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/candidate': typeof CandidateRoute
   '/join': typeof JoinRoute
   '/lead': typeof LeadRoute
+  '/leader': typeof LeaderRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/candidate': typeof CandidateRoute
   '/join': typeof JoinRoute
   '/lead': typeof LeadRoute
+  '/leader': typeof LeaderRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/join' | '/lead'
+  fullPaths: '/' | '/candidate' | '/join' | '/lead' | '/leader'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/join' | '/lead'
-  id: '__root__' | '/' | '/join' | '/lead'
+  to: '/' | '/candidate' | '/join' | '/lead' | '/leader'
+  id: '__root__' | '/' | '/candidate' | '/join' | '/lead' | '/leader'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CandidateRoute: typeof CandidateRoute
   JoinRoute: typeof JoinRoute
   LeadRoute: typeof LeadRoute
+  LeaderRoute: typeof LeaderRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +86,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/candidate': {
+      id: '/candidate'
+      path: '/candidate'
+      fullPath: '/candidate'
+      preLoaderRoute: typeof CandidateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/join': {
@@ -82,13 +109,22 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeadRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/leader': {
+      id: '/leader'
+      path: '/leader'
+      fullPath: '/leader'
+      preLoaderRoute: typeof LeaderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CandidateRoute: CandidateRoute,
   JoinRoute: JoinRoute,
   LeadRoute: LeadRoute,
+  LeaderRoute: LeaderRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
