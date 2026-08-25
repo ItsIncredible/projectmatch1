@@ -33,7 +33,9 @@ export function TopBar() {
         <div className="relative">
           <button
             type="button"
+            aria-label="Switch view"
             onClick={() => setOpen((v) => !v)}
+
             className="flex items-center gap-2 rounded-xl border border-border bg-secondary px-3 py-2 text-sm transition-colors hover:bg-accent"
           >
             <span className="max-w-40 truncate">{current ?? "Switch view"}</span>
