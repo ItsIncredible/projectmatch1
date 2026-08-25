@@ -3,7 +3,8 @@ import { useMemo, useState } from "react";
 import { toast } from "sonner";
 
 import { DeckEmpty, Initials, MatchBadge, SwipeCard } from "@/components/SwipeCard";
-import { rankCandidates, stillNeededSkills } from "@/lib/scoring";
+import { rankCandidates, skillExperienceOf, stillNeededSkills } from "@/lib/scoring";
+import { formatSkillExperience } from "@/lib/types";
 import { useProjectTeam, useStore } from "@/lib/store";
 
 export const Route = createFileRoute("/leader")({
@@ -140,7 +141,7 @@ function LeaderDashboard() {
                   <div>
                     <p className="font-display text-xl font-bold">{top.user.name}</p>
                     <p className="font-mono text-xs text-surface-foreground/60">
-                      {top.user.experienceLevel} · {top.user.availability}
+                      {top.user.experience} experience · {top.user.availability}
                     </p>
                   </div>
                 </div>
@@ -151,14 +152,18 @@ function LeaderDashboard() {
                 Top matching skills
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                {(top.matchedSkills.length ? top.matchedSkills.slice(0, 3) : ["no_gap_overlap"]).map((s) => (
-                  <span
-                    key={s}
-                    className="skill-chip border-success/50 bg-success/15 text-surface-foreground"
-                  >
-                    {s}
-                  </span>
-                ))}
+                {top.matchedSkills.length ? (
+                  top.matchedSkills.slice(0, 3).map((s) => (
+                    <span
+                      key={s}
+                      className="skill-chip border-success/50 bg-success/15 text-surface-foreground"
+                    >
+                      {formatSkillExperience(s, skillExperienceOf(top.user, s))}
+                    </span>
+                  ))
+                ) : (
+                  <span className="skill-chip">no_gap_overlap</span>
+                )}
               </div>
 
               <p className="mt-4 text-xs font-semibold uppercase tracking-wide text-surface-foreground/60">
@@ -166,7 +171,9 @@ function LeaderDashboard() {
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
                 {top.user.skills.map((s) => (
-                  <span key={s} className="skill-chip">{s}</span>
+                  <span key={s} className="skill-chip">
+                    {formatSkillExperience(s, top.user.skillExperience?.[s])}
+                  </span>
                 ))}
               </div>
             </SwipeCard>
@@ -188,11 +195,13 @@ function LeaderDashboard() {
               <div>
                 <p className="font-display font-bold">{m.name}</p>
                 <p className="font-mono text-xs text-surface-foreground/60">
-                  {m.experienceLevel} · {m.availability}
+                  {m.experience} experience · {m.availability}
                 </p>
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {m.skills.map((s) => (
-                    <span key={s} className="skill-chip">{s}</span>
+                    <span key={s} className="skill-chip">
+                      {formatSkillExperience(s, m.skillExperience?.[s])}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -219,11 +228,13 @@ function LeaderDashboard() {
                   <div>
                     <p className="font-display font-bold">{user.name}</p>
                     <p className="font-mono text-xs text-surface-foreground/60">
-                      {requested ? "requested_to_join" : "invite_sent"} · {user.experienceLevel}
+                      {requested ? "requested_to_join" : "invite_sent"} · {user.experience}
                     </p>
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {user.skills.slice(0, 4).map((s) => (
-                        <span key={s} className="skill-chip">{s}</span>
+                        <span key={s} className="skill-chip">
+                          {formatSkillExperience(s, user.skillExperience?.[s])}
+                        </span>
                       ))}
                     </div>
                   </div>

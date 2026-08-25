@@ -7,10 +7,10 @@ import { SKILL_SUGGESTIONS, SkillTagInput } from "@/components/SkillTagInput";
 import { useStore } from "@/lib/store";
 import {
   AVAILABILITIES,
-  EXPERIENCE_LEVELS,
+  EXPERIENCE_DURATIONS,
   PROJECT_TYPES,
   type Availability,
-  type ExperienceLevel,
+  type ExperienceDuration,
   type ProjectType,
 } from "@/lib/types";
 
@@ -41,7 +41,8 @@ function JoinOnboarding() {
 
   const [name, setName] = useState("");
   const [skills, setSkills] = useState<string[]>([]);
-  const [experienceLevel, setExperienceLevel] = useState<ExperienceLevel>("Intermediate");
+  const [experience, setExperience] = useState<ExperienceDuration>("6–12 months");
+  const [skillExperience, setSkillExperience] = useState<Record<string, ExperienceDuration>>({});
   const [availability, setAvailability] = useState<Availability>("5-10 hrs/week");
   const [projectTypesInterested, setProjectTypesInterested] = useState<ProjectType[]>(["Hackathon"]);
   const [interests, setInterests] = useState<string[]>([]);
@@ -56,7 +57,8 @@ function JoinOnboarding() {
       skills,
       interests,
       availability,
-      experienceLevel,
+      experience,
+      skillExperience,
       projectTypesInterested,
     });
     setSession({ role: "candidate", id: user.id });
@@ -94,16 +96,18 @@ function JoinOnboarding() {
             value={skills}
             onChange={setSkills}
             suggestions={SKILL_SUGGESTIONS}
+            experience={skillExperience}
+            onExperienceChange={setSkillExperience}
           />
         </Field>
 
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Experience level" htmlFor="experience">
+          <Field label="How long have you worked with your listed skills?" htmlFor="experience">
             <Select
               id="experience"
-              options={EXPERIENCE_LEVELS}
-              value={experienceLevel}
-              onChange={(e) => setExperienceLevel(e.target.value as ExperienceLevel)}
+              options={EXPERIENCE_DURATIONS}
+              value={experience}
+              onChange={(e) => setExperience(e.target.value as ExperienceDuration)}
             />
           </Field>
           <Field label="Availability" htmlFor="availability">

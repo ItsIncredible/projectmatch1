@@ -7,7 +7,8 @@ export const seedUsers: User[] = [
     skills: ["React", "TypeScript", "UI Design"],
     interests: ["Fintech", "Design Systems"],
     availability: "10-20 hrs/week",
-    experienceLevel: "Advanced",
+    experience: "3+ years",
+    skillExperience: { React: "3+ years", TypeScript: "2–3 years", "UI Design": "1–2 years" },
     projectTypesInterested: ["Hackathon", "Startup"],
   },
   {
@@ -16,7 +17,8 @@ export const seedUsers: User[] = [
     skills: ["Data Engineering", "Python", "SQL"],
     interests: ["Climate", "Analytics"],
     availability: "5-10 hrs/week",
-    experienceLevel: "Intermediate",
+    experience: "1–2 years",
+    skillExperience: { "Data Engineering": "1–2 years", Python: "2–3 years", SQL: "6–12 months" },
     projectTypesInterested: ["Research", "Open Source"],
   },
   {
@@ -25,7 +27,8 @@ export const seedUsers: User[] = [
     skills: ["ML", "Python", "Research"],
     interests: ["Health", "Climate"],
     availability: "20+ hrs/week",
-    experienceLevel: "Expert",
+    experience: "3+ years",
+    skillExperience: { ML: "3+ years", Python: "3+ years", Research: "2–3 years" },
     projectTypesInterested: ["Research", "Startup"],
   },
   {
@@ -34,7 +37,8 @@ export const seedUsers: User[] = [
     skills: ["Backend", "Node.js", "Postgres"],
     interests: ["Fintech", "Infrastructure"],
     availability: "10-20 hrs/week",
-    experienceLevel: "Advanced",
+    experience: "2–3 years",
+    skillExperience: { Backend: "2–3 years", "Node.js": "2–3 years", Postgres: "1–2 years" },
     projectTypesInterested: ["Startup", "Freelance-style"],
   },
   {
@@ -43,7 +47,8 @@ export const seedUsers: User[] = [
     skills: ["UX Design", "User Research", "Figma"],
     interests: ["Health", "Accessibility"],
     availability: "5-10 hrs/week",
-    experienceLevel: "Intermediate",
+    experience: "1–2 years",
+    skillExperience: { "UX Design": "1–2 years", "User Research": "6–12 months", Figma: "1–2 years" },
     projectTypesInterested: ["Hackathon", "Competition"],
   },
   {
@@ -52,7 +57,8 @@ export const seedUsers: User[] = [
     skills: ["Product", "Growth", "Analytics"],
     interests: ["Fintech", "Marketplaces"],
     availability: "< 5 hrs/week",
-    experienceLevel: "Expert",
+    experience: "3+ years",
+    skillExperience: { Product: "3+ years", Growth: "2–3 years", Analytics: "1–2 years" },
     projectTypesInterested: ["Startup"],
   },
   {
@@ -61,7 +67,8 @@ export const seedUsers: User[] = [
     skills: ["React", "Mobile", "Animation"],
     interests: ["Climate", "Games"],
     availability: "20+ hrs/week",
-    experienceLevel: "Beginner",
+    experience: "3–6 months",
+    skillExperience: { React: "3–6 months", Mobile: "Less than 3 months", Animation: "6–12 months" },
     projectTypesInterested: ["Hackathon", "Open Source"],
   },
   {
@@ -70,7 +77,8 @@ export const seedUsers: User[] = [
     skills: ["DevOps", "Backend", "Security"],
     interests: ["Infrastructure", "Fintech"],
     availability: "10-20 hrs/week",
-    experienceLevel: "Advanced",
+    experience: "2–3 years",
+    skillExperience: { DevOps: "2–3 years", Backend: "3+ years", Security: "6–12 months" },
     projectTypesInterested: ["Startup", "Competition"],
   },
 ];
@@ -82,7 +90,7 @@ export const seedProjects: Project[] = [
     description:
       "A climate analytics dashboard that turns messy emissions data into clear, auditable reports for small manufacturers.",
     leaderName: "Nora Vance",
-    leaderExperience: "Advanced",
+    leaderExperience: "2–3 years",
     requiredSkills: ["React", "Data Engineering", "UX Design", "Backend"],
     teamSize: 5,
     duration: "3 months",
@@ -97,7 +105,7 @@ export const seedProjects: Project[] = [
     description:
       "Hackathon build: an ML assistant that drafts clinical notes from doctor-patient audio, with a strong health privacy focus.",
     leaderName: "Omar Haddad",
-    leaderExperience: "Expert",
+    leaderExperience: "3+ years",
     requiredSkills: ["ML", "Python", "UI Design", "Product"],
     teamSize: 4,
     duration: "1 week",
@@ -112,7 +120,7 @@ export const seedProjects: Project[] = [
     description:
       "Open source mapping of informal transit routes, built with community-collected GPS traces and a public API.",
     leaderName: "Grace Lim",
-    leaderExperience: "Intermediate",
+    leaderExperience: "6–12 months",
     requiredSkills: ["Backend", "SQL", "React", "DevOps"],
     teamSize: 6,
     duration: "Ongoing",
