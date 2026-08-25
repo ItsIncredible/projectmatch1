@@ -40,7 +40,7 @@ function LeadOnboarding() {
   const [leaderExperience, setLeaderExperience] = useState<ExperienceLevel>("Intermediate");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState(DURATIONS[1]);
+  const [duration, setDuration] = useState<string>(DURATIONS[1] ?? "1 month");
   const [requiredSkills, setRequiredSkills] = useState<string[]>([]);
   const [teamSize, setTeamSize] = useState(4);
   const [location, setLocation] = useState("");
@@ -64,7 +64,7 @@ function LeadOnboarding() {
       location: location.trim() || (remoteOk ? "Remote" : "Not specified"),
       remoteOk,
       additionalInfo: additionalInfo.trim(),
-      projectType: projectType[0],
+      projectType: projectType[0] ?? "Hackathon",
     });
     setSession({ role: "leader", id: project.id });
     toast.success("Project created — here are your matches.");
